@@ -5,6 +5,8 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 #include <QObject>
+#include <QLayoutItem>
+
 #include "game2048.h"
 #include "secondwindow.h"
 

@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDebug>
-#include <QLayoutItem>
+
+enum direction {right,down,left,up};
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,11 +20,11 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(game, &Game2048::endGame, endWindow, &MainWindow::show);
     QObject::connect(endWindow, &SecondWindow::closed, game, &Game2048::newGame);
     QObject::connect(game, &Game2048::newGameStarted, this, &MainWindow::displayGameBoard);
-
 }
+
 void MainWindow::applyStyles(){
 
-    QFile File("C:/Users/Ziolushka/Documents/2048/stylesheet.qss");
+    QFile File(":/new/design/stylesheet.qss");
     File.open(QFile::ReadOnly);
     QString StyleSheet = QLatin1String(File.readAll());
     qApp->setStyleSheet(StyleSheet);
@@ -36,7 +36,6 @@ void MainWindow::applyStyles(){
     ui->boardUI->setFocusPolicy(Qt::NoFocus);
 
     setWindowIcon(QIcon(":/new/images/icon.png"));
-
 }
 void MainWindow::displayGameBoard()
 {
@@ -47,7 +46,6 @@ void MainWindow::displayGameBoard()
         for (int j = 0; j < 4; ++j)
             if (!game->board[i][j])
                 setBoardItem(i, j, " ");
-
             else
                 setBoardItem(i, j, QString::number(game->board[i][j]));
 }
@@ -99,13 +97,13 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::keyPressEvent(QKeyEvent * event){
 
     if(event->key() == Qt::Key_Up)
-        game->applyMove(3);
+        game->applyMove(up);
     if(event->key() == Qt::Key_Left)
-        game->applyMove(2);
+        game->applyMove(left);
     if(event->key() == Qt::Key_Down)
-        game->applyMove(1);
+        game->applyMove(down);
     if(event->key() == Qt::Key_Right)
-        game->applyMove(0);
+        game->applyMove(right);
 
     displayGameBoard();
 }

@@ -2,4 +2,7 @@
     <qresource prefix="/new/images">
         <file>icon.png</file>
     </qresource>
+    <qresource prefix="/new/design">
+        <file>stylesheet.qss</file>
+    </qresource>
 </RCC>

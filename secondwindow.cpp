@@ -29,7 +29,7 @@ SecondWindow::~SecondWindow()
 }
 void SecondWindow::applyStyles()
 {
-    QFile File("C:/Users/Ziolushka/Documents/2048/stylesheet.qss");
+    QFile File(":/new/design/stylesheet.qss");
     File.open(QFile::ReadOnly);
     QString StyleSheet = QLatin1String(File.readAll());
     qApp->setStyleSheet(StyleSheet);
@@ -42,5 +42,6 @@ void SecondWindow::on_try_again_button_clicked()
 
 void SecondWindow::on_link_button_clicked()
 {
-    QDesktopServices::openUrl(QUrl("https://www.linkedin.com/in/olena-z-b714a013b/"));
+    QString autorLinkedIn = "https://www.linkedin.com/in/olena-z-b714a013b/";
+    QDesktopServices::openUrl(QUrl(autorLinkedIn));
 }
